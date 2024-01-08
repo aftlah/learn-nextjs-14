@@ -1,0 +1,7 @@
+fungsi @ pada folder analytics dan product berfungsi untuk parallel route,
+
+apa itu parallel route???
+Parallel Route : memungkinkan kita untuk melakukan kondisonal render terhadap 1 page atau lebih di dalam layout yang sama 
+
+Error : ketikan kita mencantumkan sesuatu di layout nya tanpa ada pagenya dari si parallel maka dia akan menjadi 404
+Cara untuk solvenya yaitu kita buat file yg namanya default.tsx yg isinya null

@@ -1,0 +1,1 @@
+(.)detail adalah Intercepting Routes

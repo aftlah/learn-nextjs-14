@@ -1,0 +1,6 @@
+jenis jenis dynamic routing :
+
+1. [slug] = ini mengambil 1 param, misal : product/baju
+2. [...slug] = ini mengambil lebih dari 1 param, misal : product/baju/merah
+3. [[...slug]] = kalau seperti ini paramnya optional, jadi di folder parentnya tidak perlu dituliskan page.tsx
+    karena param nya bisa menjadi page dari parentnya juga

@@ -1,0 +1,1 @@
+Route handler adalah tempat untuk membuat API di nextjs

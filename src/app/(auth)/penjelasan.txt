@@ -1,0 +1,2 @@
+(auth) adalah folder gruoping, 
+jadi folder yang menggunakan () itu tidak akan dibaca oleh route, tapi hanya untuk menggrupkan saja
