@@ -50,9 +50,9 @@ const authOptions: NextAuthOptions = {
 
         // Login with Google account
         GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID as string,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-            
+            clientId: process.env.GOOGLE_CLIENT_ID!,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+
         }),
     ],
     callbacks: {
@@ -67,8 +67,9 @@ const authOptions: NextAuthOptions = {
             // mengecek login dari google
             if (account?.provider === "google") {
                 const data = {
-                    fullname: user.fullname,
+                    fullname: user.name,
                     email: user.email,
+                    image: user.iamge,
                     type: "google",
                 };
                 await loginWithGoogle(
@@ -91,6 +92,9 @@ const authOptions: NextAuthOptions = {
             }
             if ("fullname" in token) {
                 session.user.fullname = token.fullname;
+            }
+            if ("image" in token) {
+                session.user.image = token.image;
             }
             if ("username" in token) {
                 session.user.username = token.username;

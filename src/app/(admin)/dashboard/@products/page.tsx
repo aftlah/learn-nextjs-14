@@ -6,7 +6,7 @@ const AdminProductPage = () => {
     const [status, setStatus] = useState("")
 
     const revalidate = async () => {
-        const res = await fetch(`http://localhost:3000/api/revalidate?tag=product&secret=Altaf123`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/revalidate?tag=product&secret=Altaf123`, {
             method: 'POST',
         })
 

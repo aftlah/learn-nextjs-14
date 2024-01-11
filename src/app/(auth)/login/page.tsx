@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
 const LoginPage = ({ searchParams }: any) => {
-	console.log(searchParams);
+	// console.log(searchParams);
 
 	const router = useRouter();
 	const [error, setError] = useState<string>("");
@@ -34,7 +34,7 @@ const LoginPage = ({ searchParams }: any) => {
 				setIsLoading(false);
 			} else {
 				setIsLoading(false);
-				console.log(res);
+				// console.log(res);
 				if (res.status === 401) {
 					setError("Email or Password is Incorrect");
 				}

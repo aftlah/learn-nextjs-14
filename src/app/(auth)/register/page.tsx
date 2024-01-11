@@ -34,7 +34,7 @@ const RegisterPage = () => {
     } else {
       setError("Email already exist")
       setIsloading(false)
-      console.log(res);
+      // console.log(res);
     }
   }
 

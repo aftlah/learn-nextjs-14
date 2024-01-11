@@ -1,7 +1,10 @@
+"use client"
 import { getData } from '@/services/products'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Stringifier } from 'postcss'
 import React from 'react'
+import useSWR from 'swr'
 
 // type ProductPageProps = { params: { slug: String } }
 
@@ -41,14 +44,23 @@ import React from 'react'
 
 // }
 
-const DetailProductPage = async () => {
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
+
+const DetailProductPage = () => {
     // const { params } = props
     // console.log(props);
 
-    const data = await getData("http://localhost:3000/api/product")
-    const products = data.data
+    const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/product`,
+        fetcher,
+    )
+    const products = {
+        data: data?.data
+    }
+
+    // const data = await getData(`${process.env.NEXT_PUBLIC_API_URL}/api/product`)
+    // const products = data.data
     // console.log(data)
- 
+
 
 
     return (
@@ -76,17 +88,17 @@ const DetailProductPage = async () => {
             )} */}
 
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-5 place-items-center'>
-                {products?.length > 0 && products.map((product: any) => (
+                {products.data?.length > 0 && products.data.map((product: any) => (
                     <Link href={`/product/detail/${product.id}`} key={product.id} className="w-[90%]  max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 my-4">
-                    <Image width={500} height={500} className="p-8 rounded-t-lg object-contain h-96 w-full" src={product.image} alt="product image" />
-                    <div className="px-5 pb-5">
-                        <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white truncate">{product.name}</h5>
-                        <div className="flex items-center justify-between">
-                            <span className="text-3xl font-bold text-gray-900 dark:text-white mt-3">${product.price}</span>
-                            <button type='button' className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                        <Image width={500} height={500} className="p-8 rounded-t-lg object-contain h-96 w-full" src={product.image} alt="product image" />
+                        <div className="px-5 pb-5">
+                            <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white truncate">{product.name}</h5>
+                            <div className="flex items-center justify-between">
+                                <span className="text-3xl font-bold text-gray-900 dark:text-white mt-3">${product.price}</span>
+                                <button type='button' className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                            </div>
                         </div>
-                    </div>
-                </Link>
+                    </Link>
                 ))}
             </div>
         </>

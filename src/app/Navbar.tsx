@@ -12,7 +12,7 @@ const Navbar = () => {
 
   // useSession dari NextAuth
   const { data: session, status }: { data: any, status: string } = useSession()
-  console.log(session, status);
+  // console.log(session, status);
 
 
   return (
